@@ -9,9 +9,12 @@ const ProblemManager = {
   /**
    * Initialize the Problem Manager
    */
-  init: function() {
-    return new Promise(async (resolve) => {
+  init: async function() {
+    try {
+      // Always load fresh problems from server first
+      await this.loadProblemsFromServer();
       
+      // Then load any user-specific data
       await this.loadProblems();
       
       // Set the nextId based on localStorage or the highest ID + 1
@@ -25,24 +28,18 @@ const ProblemManager = {
         this.nextId = 1;
       }
       
-
-      resolve();
-    });
+      return true;
+    } catch (error) {
+      console.error("Error initializing ProblemManager:", error);
+      return false;
+    }
   },
   
   /**
-   * Load problems from localStorage or server
+   * Load base problems from server (standard problems list)
    */
-  loadProblems: async function() {
+  loadProblemsFromServer: async function() {
     try {
-      // First try to load from localStorage
-      const storedProblems = Storage.getProblems();
-      if (storedProblems && storedProblems.length > 0) {
-        this.problems = storedProblems;
-        return;
-      }
-      
-      // If no problems in localStorage, load from server
       const response = await fetch('problems.json');
       
       if (!response.ok) {
@@ -54,23 +51,88 @@ const ProblemManager = {
         throw new Error('Invalid problems data format');
       }
       
-      this.problems = data.problems;
+      // Store server problems in a separate property
+      this.serverProblems = data.problems;
       
-      // Save the initial problems to localStorage
-      Storage.saveProblemList(this.problems);
+      // If no problems in localStorage, use server problems as default
+      if (!localStorage.getItem('leetcode-problems')) {
+        this.problems = [...this.serverProblems];
+        await Storage.saveProblemList(this.problems);
+      }
+    } catch (error) {
+      console.error('Error loading problems from server:', error);
+      this.serverProblems = [];
+    }
+  },
+  
+  /**
+   * Load problems from localStorage or Firestore
+   */
+  loadProblems: async function() {
+    try {
+      // Try to load from localStorage/Firestore
+      const storedProblems = await Storage.getProblems();
+      if (storedProblems && storedProblems.length > 0) {
+        this.problems = storedProblems;
+        
+        // Ensure all standard problems are included
+        if (this.serverProblems && this.serverProblems.length > 0) {
+          // Find standard problems that aren't in the user's problem list
+          const standardIds = new Set(this.serverProblems.map(p => p.id));
+          const userIds = new Set(this.problems.map(p => p.id));
+          
+          // Add any missing standard problems
+          this.serverProblems.forEach(problem => {
+            if (!userIds.has(problem.id)) {
+              this.problems.push(problem);
+            }
+          });
+          
+          // Save the updated problem list
+          await Storage.saveProblemList(this.problems);
+        }
+        
+        // Reset completion states to ensure consistency
+        Storage.resetCompletionStates();
+        return;
+      }
       
+      // If we reach here and have server problems, use those
+      if (this.serverProblems && this.serverProblems.length > 0) {
+        this.problems = [...this.serverProblems];
+        
+        // Save the initial problems to localStorage
+        await Storage.saveProblemList(this.problems);
+      } else {
+        // Last resort: try to load directly from JSON file
+        const response = await fetch('problems.json');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch problems from server');
+        }
+        
+        const data = await response.json();
+        if (!data.problems || !Array.isArray(data.problems)) {
+          throw new Error('Invalid problems data format');
+        }
+        
+        this.problems = data.problems;
+        
+        // Save the initial problems to localStorage
+        await Storage.saveProblemList(this.problems);
+      }
     } catch (error) {
       console.error('Error loading problems:', error);
-      this.problems = [];
+      this.problems = this.serverProblems || [];
     }
   },
   
   /**
    * Add a new problem
    * @param {object} problemData - Problem data object
-   * @returns {object} The newly created problem
+   * @returns {Promise<object>} The newly created problem
    */
-  addProblem: function(problemData) {
+  addProblem: async function(problemData) {
     try {
       
       // Create the problem object
@@ -90,13 +152,12 @@ const ProblemManager = {
       // Increment nextId for future problems
       this.nextId++;
       
-      // Save both the problems and the nextId to localStorage
-      const saveResult = Storage.saveProblemList(this.problems);
+      // Save both the problems and the nextId to localStorage and Firestore
+      const saveResult = await Storage.saveProblemList(this.problems);
       
       if (!saveResult) {
-        throw new Error('Failed to save problem to localStorage');
+        throw new Error('Failed to save problem');
       }
-      
       
       return newProblem;
     } catch (error) {
@@ -110,9 +171,9 @@ const ProblemManager = {
    * Update an existing problem
    * @param {number} id - Problem ID
    * @param {object} updatedData - Updated problem data
-   * @returns {boolean} Success status
+   * @returns {Promise<boolean>} Success status
    */
-  updateProblem: function(id, updatedData) {
+  updateProblem: async function(id, updatedData) {
     try {
       // Convert id to number if it's a string
       id = parseInt(id);
@@ -131,12 +192,11 @@ const ProblemManager = {
         id: id                   // Ensure ID remains the same
       };
       
-      
-      // Save to localStorage for persistence - CRITICAL STEP!
-      const saveResult = Storage.saveProblemList(this.problems);
+      // Save to localStorage and Firestore for persistence
+      const saveResult = await Storage.saveProblemList(this.problems);
       
       if (!saveResult) {
-        throw new Error('Failed to save to localStorage');
+        throw new Error('Failed to save to localStorage or Firestore');
       }
       
       return true;
@@ -146,7 +206,12 @@ const ProblemManager = {
     }
   },
   
-  deleteProblem: function(id) {
+  /**
+   * Delete a problem
+   * @param {number} id - Problem ID
+   * @returns {Promise<boolean>} Success status
+   */
+  deleteProblem: async function(id) {
     const index = this.problems.findIndex(p => p.id === id);
     
     if (index === -1) return false;
@@ -157,10 +222,14 @@ const ProblemManager = {
     // Remove the problem
     this.problems.splice(index, 1);
     
-    // Save to localStorage for persistence
-    Storage.saveProblemList(this.problems);
-    
-    return true;
+    // Save to localStorage and Firestore for persistence
+    try {
+      await Storage.saveProblemList(this.problems);
+      return true;
+    } catch (error) {
+      console.error('Error deleting problem:', error);
+      return false;
+    }
   },
   
   /**

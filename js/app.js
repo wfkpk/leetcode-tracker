@@ -9,10 +9,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       languages: ['javascript', 'python', 'java', 'cpp', 'csharp']
     });
     
-    // Initialize problem manager without clearing localStorage
+    // Initialize auth UI
+    AuthUI.init();
+    
+    // Initialize problem manager
     await ProblemManager.init();
     
-    // Initialize UI
+    // Initialize UI components
     UI.init();
     
   } catch (error) {

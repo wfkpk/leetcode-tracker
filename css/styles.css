@@ -1132,3 +1132,181 @@ button.cancel:hover {
 .edit-problem-header .close:hover {
   color: #333;
 }
+
+/* Add these styles at the end of your existing CSS file */
+
+/* Authentication styles */
+.auth-container {
+  background: linear-gradient(to right, #f5f5f5, #fff);
+  border-radius: 12px;
+  padding: 16px 24px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.auth-login {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.auth-message {
+  font-size: 15px;
+  color: var(--text-medium);
+  font-weight: 500;
+}
+
+.login-btn {
+  background-color: #4285F4;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.login-btn:hover {
+  background-color: #3367D6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.login-btn i {
+  font-size: 16px;
+}
+
+.auth-user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.auth-user-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.auth-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.auth-user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-username {
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 16px;
+}
+
+.auth-email {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.auth-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logout-btn {
+  background-color: #f5f5f5;
+  color: var(--text-medium);
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+  background-color: #e5e5e5;
+}
+
+.sync-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.sync-btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.sync-btn i {
+  font-size: 14px;
+}
+
+.sync-status {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  display: none;
+}
+
+.sync-status.info {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
+.sync-status.success {
+  background-color: #e8f5e9;
+  color: #388e3c;
+}
+
+.sync-status.error {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+
+@media (max-width: 768px) {
+  .auth-login {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .auth-user-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .auth-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
