@@ -1,0 +1,679 @@
+{
+  "problems": [
+    {
+      "id": 1,
+      "title": "1. Two Sum (1)",
+      "url": "https://leetcode.com/problems/two-sum/",
+      "topics": ["Array", "Hash Table"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Use a hash table to store numbers you've seen. For each number, check if target - number exists in your hash table."
+    },
+    {
+      "id": 2,
+      "title": "2. Valid Parentheses (20)",
+      "url": "https://leetcode.com/problems/valid-parentheses/",
+      "topics": ["String", "Stack"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Use a stack. Push opening brackets onto the stack, and pop when you encounter closing brackets. Check if the popped bracket matches."
+    },
+    {
+      "id": 3,
+      "title": "3. Merge Two Sorted Lists (21)",
+      "url": "https://leetcode.com/problems/merge-two-sorted-lists/",
+      "topics": ["Linked List", "Recursion"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Use a dummy head node. Compare the values of both lists and append the smaller one to your result list."
+    },
+    {
+      "id": 4,
+      "title": "4. Best Time to Buy and Sell Stock (121)",
+      "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
+      "topics": ["Array", "Dynamic Programming"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Track the minimum price seen so far, and for each price, calculate profit if you sell at that price."
+    },
+    {
+      "id": 5,
+      "title": "5. Valid Palindrome (125)",
+      "url": "https://leetcode.com/problems/valid-palindrome/",
+      "topics": ["String", "Two Pointers"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Use two pointers starting from both ends, moving toward the center. Skip non-alphanumeric characters."
+    },
+    {
+      "id": 6,
+      "title": "6. Invert Binary Tree (226)",
+      "url": "https://leetcode.com/problems/invert-binary-tree/",
+      "topics": ["Tree", "DFS", "BFS"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Swap the left and right children for each node in the tree using recursion or iteration."
+    },
+    {
+      "id": 7,
+      "title": "7. Valid Anagram (242)",
+      "url": "https://leetcode.com/problems/valid-anagram/",
+      "topics": ["String", "Hash Table", "Sorting"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Use a hash table to count occurrences of each character in both strings, or sort both strings and compare."
+    },
+    {
+      "id": 8,
+      "title": "8. Binary Search (704)",
+      "url": "https://leetcode.com/problems/binary-search/",
+      "topics": ["Array", "Binary Search"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Use two pointers for the left and right boundaries. Compare the middle element with the target."
+    },
+    {
+      "id": 9,
+      "title": "9. Flood Fill (733)",
+      "url": "https://leetcode.com/problems/flood-fill/",
+      "topics": ["Array", "DFS", "BFS"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Use DFS or BFS to visit all connected cells with the same color and change them to the new color."
+    },
+    {
+      "id": 10,
+      "title": "10. Lowest Common Ancestor of BST (235)",
+      "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/",
+      "topics": ["Tree", "BST"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Take advantage of BST properties. If both nodes are less than current, go left; if both greater, go right; otherwise, current is LCA."
+    },
+    {
+      "id": 11,
+      "title": "11. Balanced Binary Tree (110)",
+      "url": "https://leetcode.com/problems/balanced-binary-tree/",
+      "topics": ["Tree", "DFS"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Use a recursive function that returns both the height and whether the tree is balanced."
+    },
+    {
+      "id": 12,
+      "title": "12. Linked List Cycle (141)",
+      "url": "https://leetcode.com/problems/linked-list-cycle/",
+      "topics": ["Linked List", "Two Pointers"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Use Floyd's tortoise and hare algorithm (slow and fast pointers). If they meet, there's a cycle."
+    },
+    {
+      "id": 13,
+      "title": "13. Implement Queue using Stacks (232)",
+      "url": "https://leetcode.com/problems/implement-queue-using-stacks/",
+      "topics": ["Stack", "Queue", "Design"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Use two stacks: one for push operations and another for pop operations. When popping, transfer elements if necessary."
+    },
+    {
+      "id": 14,
+      "title": "14. First Bad Version (278)",
+      "url": "https://leetcode.com/problems/first-bad-version/",
+      "topics": ["Binary Search"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Use binary search to find the first occurrence of a bad version."
+    },
+    {
+      "id": 15,
+      "title": "15. Ransom Note (383)",
+      "url": "https://leetcode.com/problems/ransom-note/",
+      "topics": ["Hash Table", "String", "Counting"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Count the occurrences of each character in both strings. Each character in ransom note must have enough occurrences in magazine."
+    },
+    {
+      "id": 16,
+      "title": "16. Climbing Stairs (70)",
+      "url": "https://leetcode.com/problems/climbing-stairs/",
+      "topics": ["Dynamic Programming"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Use dynamic programming. The number of ways to reach step n is the sum of ways to reach steps n-1 and n-2."
+    },
+    {
+      "id": 17,
+      "title": "17. Longest Substring Without Repeating Characters (3)",
+      "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+      "topics": ["String", "Sliding Window", "Hash Table"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use a sliding window approach with a hash set to track characters in the current window."
+    },
+    {
+      "id": 18,
+      "title": "18. Longest Repeating Character Replacement (424)",
+      "url": "https://leetcode.com/problems/longest-repeating-character-replacement/",
+      "topics": ["String", "Sliding Window"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use a sliding window where (window length - max frequency of any char) <= k."
+    },
+    {
+      "id": 19,
+      "title": "19. Minimum Window Substring (76)",
+      "url": "https://leetcode.com/problems/minimum-window-substring/",
+      "topics": ["String", "Sliding Window", "Hash Table"],
+      "difficulty": "Hard",
+      "isBlind75": true,
+      "hint": "Use a sliding window to expand and contract while tracking character counts with a hash map."
+    },
+    {
+      "id": 20,
+      "title": "20. Valid Anagram (242)",
+      "url": "https://leetcode.com/problems/valid-anagram/",
+      "topics": ["String", "Hash Table", "Sorting"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Compare character counts or sort both strings and check equality."
+    },
+    {
+      "id": 21,
+      "title": "21. Group Anagrams (49)",
+      "url": "https://leetcode.com/problems/group-anagrams/",
+      "topics": ["String", "Hash Table", "Sorting"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use a hash map where the key is a sorted version of each string."
+    },
+    {
+      "id": 22,
+      "title": "22. Top K Frequent Elements (347)",
+      "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+      "topics": ["Array", "Hash Table", "Heap"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use a frequency map followed by a max-heap or bucket sort."
+    },
+    {
+      "id": 23,
+      "title": "23. Product of Array Except Self (238)",
+      "url": "https://leetcode.com/problems/product-of-array-except-self/",
+      "topics": ["Array", "Prefix Sum"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Compute prefix and suffix products without using division."
+    },
+    {
+      "id": 24,
+      "title": "24. Valid Sudoku (36)",
+      "url": "https://leetcode.com/problems/valid-sudoku/",
+      "topics": ["Array", "Hash Table", "Matrix"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Check rows, columns, and 3x3 sub-boxes for duplicates using hash sets."
+    },
+    {
+      "id": 25,
+      "title": "25. Encode and Decode Strings (271)",
+      "url": "https://leetcode.com/problems/encode-and-decode-strings/",
+      "topics": ["String", "Design"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use a delimiter or prefix each string with its length."
+    },
+    {
+      "id": 26,
+      "title": "26. Longest Consecutive Sequence (128)",
+      "url": "https://leetcode.com/problems/longest-consecutive-sequence/",
+      "topics": ["Array", "Hash Table", "Union Find"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use a hash set to check for sequence starts (nums where num-1 doesn't exist)."
+    },
+    {
+      "id": 27,
+      "title": "27. Merge Intervals (56)",
+      "url": "https://leetcode.com/problems/merge-intervals/",
+      "topics": ["Array", "Sorting"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Sort intervals by start time and merge overlapping ones."
+    },
+    {
+      "id": 28,
+      "title": "28. Insert Interval (57)",
+      "url": "https://leetcode.com/problems/insert-interval/",
+      "topics": ["Array"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Handle three cases: before newInterval, overlapping with newInterval, after newInterval."
+    },
+    {
+      "id": 29,
+      "title": "29. Meeting Rooms (252)",
+      "url": "https://leetcode.com/problems/meeting-rooms/",
+      "topics": ["Array", "Sorting"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Check if any two consecutive meetings overlap after sorting by start time."
+    },
+    {
+      "id": 30,
+      "title": "30. Meeting Rooms II (253)",
+      "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+      "topics": ["Array", "Heap", "Greedy"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use a min-heap to track the earliest ending meeting when allocating rooms."
+    },
+    {
+      "id": 31,
+      "title": "31. Reverse Linked List (206)",
+      "url": "https://leetcode.com/problems/reverse-linked-list/",
+      "topics": ["Linked List"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Use iterative (three pointers) or recursive approach."
+    },
+    {
+      "id": 32,
+      "title": "32. Detect Cycle in Linked List (141)",
+      "url": "https://leetcode.com/problems/linked-list-cycle/",
+      "topics": ["Linked List", "Two Pointers"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Floyd's Tortoise and Hare algorithm (slow/fast pointers)."
+    },
+    {
+      "id": 33,
+      "title": "33. Merge K Sorted Lists (23)",
+      "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+      "topics": ["Linked List", "Heap"],
+      "difficulty": "Hard",
+      "isBlind75": true,
+      "hint": "Use a min-heap to always get the smallest node from all lists."
+    },
+    {
+      "id": 34,
+      "title": "34. Remove Nth Node From End of List (19)",
+      "url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
+      "topics": ["Linked List", "Two Pointers"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use two pointers with a gap of n nodes between them."
+    },
+    {
+      "id": 35,
+      "title": "35. Reorder List (143)",
+      "url": "https://leetcode.com/problems/reorder-list/",
+      "topics": ["Linked List"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Find the middle, reverse the second half, and merge the two halves alternately."
+    },
+    {
+      "id": 36,
+      "title": "36. Set Matrix Zeroes (73)",
+      "url": "https://leetcode.com/problems/set-matrix-zeroes/",
+      "topics": ["Array", "Matrix"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use the first row and first column to mark zeroes, with special handling for row 0 and column 0."
+    },
+    {
+      "id": 37,
+      "title": "37. Spiral Matrix (54)",
+      "url": "https://leetcode.com/problems/spiral-matrix/",
+      "topics": ["Array", "Matrix"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Simulate the spiral traversal with layer-by-layer approach."
+    },
+    {
+      "id": 38,
+      "title": "38. Rotate Image (48)",
+      "url": "https://leetcode.com/problems/rotate-image/",
+      "topics": ["Array", "Matrix"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Transpose the matrix and then reverse each row."
+    },
+    {
+      "id": 39,
+      "title": "39. Word Search (79)",
+      "url": "https://leetcode.com/problems/word-search/",
+      "topics": ["Array", "Backtracking"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use DFS with backtracking to explore all possible paths."
+    },
+    {
+      "id": 40,
+      "title": "40. Subsets (78)",
+      "url": "https://leetcode.com/problems/subsets/",
+      "topics": ["Array", "Backtracking"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use backtracking to generate all possible subsets."
+    },
+    {
+      "id": 41,
+      "title": "41. Combination Sum (39)",
+      "url": "https://leetcode.com/problems/combination-sum/",
+      "topics": ["Array", "Backtracking"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use backtracking with pruning to avoid duplicate combinations."
+    },
+    {
+      "id": 42,
+      "title": "42. Permutations (46)",
+      "url": "https://leetcode.com/problems/permutations/",
+      "topics": ["Array", "Backtracking"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use backtracking to swap elements and generate all permutations."
+    },
+    {
+      "id": 43,
+      "title": "43. Merge Two Binary Trees (617)",
+      "url": "https://leetcode.com/problems/merge-two-binary-trees/",
+      "topics": ["Tree", "DFS"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Recursively merge nodes from both trees."
+    },
+    {
+      "id": 44,
+      "title": "44. Maximum Depth of Binary Tree (104)",
+      "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+      "topics": ["Tree", "DFS"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Recursively compute the max depth of left and right subtrees."
+    },
+    {
+      "id": 45,
+      "title": "45. Same Tree (100)",
+      "url": "https://leetcode.com/problems/same-tree/",
+      "topics": ["Tree", "DFS"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Recursively check if both trees have identical structure and values."
+    },
+    {
+      "id": 46,
+      "title": "46. Subtree of Another Tree (572)",
+      "url": "https://leetcode.com/problems/subtree-of-another-tree/",
+      "topics": ["Tree", "DFS"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "For each node in the main tree, check if it matches the subtree."
+    },
+    {
+      "id": 47,
+      "title": "47. Invert Binary Tree (226)",
+      "url": "https://leetcode.com/problems/invert-binary-tree/",
+      "topics": ["Tree", "DFS"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Swap left and right children recursively."
+    },
+    {
+      "id": 48,
+      "title": "48. Path Sum (112)",
+      "url": "https://leetcode.com/problems/path-sum/",
+      "topics": ["Tree", "DFS"],
+      "difficulty": "Easy",
+      "isBlind75": true,
+      "hint": "Recursively check if any path from root to leaf sums to the target."
+    },
+    {
+      "id": 49,
+      "title": "49. Binary Tree Level Order Traversal (102)",
+      "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+      "topics": ["Tree", "BFS"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use a queue to process nodes level by level."
+    },
+    {
+      "id": 50,
+      "title": "50. Serialize and Deserialize Binary Tree (297)",
+      "url": "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/",
+      "topics": ["Tree", "DFS"],
+      "difficulty": "Hard",
+      "isBlind75": true,
+      "hint": "Use preorder traversal with 'null' markers for missing nodes."
+    },
+    {
+      "id": 51,
+      "title": "51. Construct Binary Tree from Preorder and Inorder Traversal (105)",
+      "url": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/",
+      "topics": ["Tree", "DFS"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "The first element in preorder is the root; find its position in inorder to split left/right subtrees."
+    },
+    {
+      "id": 52,
+      "title": "52. Validate Binary Search Tree (98)",
+      "url": "https://leetcode.com/problems/validate-binary-search-tree/",
+      "topics": ["Tree", "DFS"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Perform an inorder traversal and check if the sequence is strictly increasing."
+    },
+    {
+      "id": 53,
+      "title": "53. Kth Smallest Element in a BST (230)",
+      "url": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/",
+      "topics": ["Tree", "DFS"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Perform an inorder traversal and stop at the kth element."
+    },
+    {
+      "id": 54,
+      "title": "54. Lowest Common Ancestor of a Binary Tree (236)",
+      "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/",
+      "topics": ["Tree", "DFS"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Recursively search for both nodes; the LCA is where both searches return non-null."
+    },
+    {
+      "id": 55,
+      "title": "55. Implement Trie (Prefix Tree) (208)",
+      "url": "https://leetcode.com/problems/implement-trie-prefix-tree/",
+      "topics": ["String", "Trie"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use a TrieNode structure with children (usually a dictionary) and an end-of-word marker."
+    },
+    {
+      "id": 56,
+      "title": "56. Add and Search Word (211)",
+      "url": "https://leetcode.com/problems/add-and-search-word-data-structure-design/",
+      "topics": ["String", "Trie", "DFS"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use a Trie with DFS for wildcard ('.') character handling during search."
+    },
+    {
+      "id": 57,
+      "title": "57. Word Search II (212)",
+      "url": "https://leetcode.com/problems/word-search-ii/",
+      "topics": ["String", "Trie", "Backtracking"],
+      "difficulty": "Hard",
+      "isBlind75": true,
+      "hint": "Insert all words into a Trie, then use DFS + backtracking on the board while traversing the Trie."
+    },
+    {
+      "id": 58,
+      "title": "58. House Robber (198)",
+      "url": "https://leetcode.com/problems/house-robber/",
+      "topics": ["Dynamic Programming"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "dp[i] = max(dp[i-1], dp[i-2] + nums[i])."
+    },
+    {
+      "id": 59,
+      "title": "59. House Robber II (213)",
+      "url": "https://leetcode.com/problems/house-robber-ii/",
+      "topics": ["Dynamic Programming"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Run House Robber I twice: once excluding the first house, once excluding the last house."
+    },
+    {
+      "id": 60,
+      "title": "60. Decode Ways (91)",
+      "url": "https://leetcode.com/problems/decode-ways/",
+      "topics": ["String", "Dynamic Programming"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "dp[i] = (valid 1-digit ? dp[i-1] : 0) + (valid 2-digits ? dp[i-2] : 0)."
+    },
+    {
+      "id": 61,
+      "title": "61. Unique Paths (62)",
+      "url": "https://leetcode.com/problems/unique-paths/",
+      "topics": ["Math", "Dynamic Programming"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "dp[i][j] = dp[i-1][j] + dp[i][j-1] (can be optimized to 1D DP)."
+    },
+    {
+      "id": 62,
+      "title": "62. Jump Game (55)",
+      "url": "https://leetcode.com/problems/jump-game/",
+      "topics": ["Array", "Greedy"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Track the farthest reachable index; return true if it reaches the end."
+    },
+    {
+      "id": 63,
+      "title": "63. Clone Graph (133)",
+      "url": "https://leetcode.com/problems/clone-graph/",
+      "topics": ["Graph", "DFS", "BFS"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use a hash map to map original nodes to clones, then DFS/BFS to copy neighbors."
+    },
+    {
+      "id": 64,
+      "title": "64. Pacific Atlantic Water Flow (417)",
+      "url": "https://leetcode.com/problems/pacific-atlantic-water-flow/",
+      "topics": ["Array", "DFS", "BFS"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Perform DFS/BFS from the ocean edges inward, then find cells reachable from both oceans."
+    },
+    {
+      "id": 65,
+      "title": "65. Number of Islands (200)",
+      "url": "https://leetcode.com/problems/number-of-islands/",
+      "topics": ["Array", "DFS", "BFS"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use DFS/BFS to mark all connected '1's as visited."
+    },
+    {
+      "id": 66,
+      "title": "66. Longest Increasing Path in a Matrix (329)",
+      "url": "https://leetcode.com/problems/longest-increasing-path-in-a-matrix/",
+      "topics": ["Array", "DFS", "Memoization"],
+      "difficulty": "Hard",
+      "isBlind75": true,
+      "hint": "Use DFS with memoization to store the longest path starting from each cell."
+    },
+    {
+      "id": 67,
+      "title": "67. Alien Dictionary (269)",
+      "url": "https://leetcode.com/problems/alien-dictionary/",
+      "topics": ["Graph", "Topological Sort"],
+      "difficulty": "Hard",
+      "isBlind75": true,
+      "hint": "Build a graph from adjacent words, then perform topological sort."
+    },
+    {
+      "id": 68,
+      "title": "68. Graph Valid Tree (261)",
+      "url": "https://leetcode.com/problems/graph-valid-tree/",
+      "topics": ["Graph", "Union Find"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "A valid tree has no cycles and is fully connected (use Union Find)."
+    },
+    {
+      "id": 69,
+      "title": "69. Number of Connected Components in an Undirected Graph (323)",
+      "url": "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/",
+      "topics": ["Graph", "Union Find"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use Union Find to count disjoint sets."
+    },
+    {
+      "id": 70,
+      "title": "70. Insert Delete GetRandom O(1) (380)",
+      "url": "https://leetcode.com/problems/insert-delete-getrandom-o1/",
+      "topics": ["Array", "Hash Table"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use a hash map to track indices and an array for O(1) random access."
+    },
+    {
+      "id": 71,
+      "title": "71. Find Median from Data Stream (295)",
+      "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+      "topics": ["Heap", "Design"],
+      "difficulty": "Hard",
+      "isBlind75": true,
+      "hint": "Use a max-heap for the lower half and a min-heap for the upper half."
+    },
+    {
+      "id": 72,
+      "title": "72. Merge k Sorted Lists (23)",
+      "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+      "topics": ["Linked List", "Heap"],
+      "difficulty": "Hard",
+      "isBlind75": true,
+      "hint": "Use a min-heap to always extract the smallest node from all lists."
+    },
+    {
+      "id": 73,
+      "title": "73. Kth Largest Element in an Array (215)",
+      "url": "https://leetcode.com/problems/kth-largest-element-in-an-array/",
+      "topics": ["Array", "Heap", "Quickselect"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Use a min-heap of size k or Quickselect algorithm."
+    },
+    {
+      "id": 74,
+      "title": "74. Task Scheduler (621)",
+      "url": "https://leetcode.com/problems/task-scheduler/",
+      "topics": ["Array", "Greedy", "Heap"],
+      "difficulty": "Medium",
+      "isBlind75": true,
+      "hint": "Schedule tasks with the highest frequency first, using idle slots if needed."
+    },
+    {
+      "id": 75,
+      "title": "75. N-Queens (51)",
+      "url": "https://leetcode.com/problems/n-queens/",
+      "topics": ["Backtracking"],
+      "difficulty": "Hard",
+      "isBlind75": true,
+      "hint": "Use backtracking to place queens row by row, checking column and diagonal conflicts."
+    }
+  ]
+}

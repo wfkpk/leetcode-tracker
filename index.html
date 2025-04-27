@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>LeetCode Practice Checklist</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Add Markdown parser library -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Add syntax highlighting for code blocks -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+<h1>LeetCode Practice Checklist</h1>
+
+<!-- Progress Tracker -->
+<div class="progress-tracker">
+  <div class="progress-item">
+    <div class="progress-icon">
+      <i class="fas fa-tasks"></i>
+    </div>
+    <div class="progress-fraction">
+      <span class="progress-numerator" id="all-completed">3</span>
+      <span class="progress-separator">/</span>
+      <span class="progress-denominator" id="all-total">40</span>
+    </div>
+    <div class="progress-label">Problems Completed</div>
+    <div class="progress-bar-container">
+      <div class="progress-bar" style="width: 7.5%"></div>
+    </div>
+  </div>
+  
+  <div class="progress-item">
+    <div class="progress-icon">
+      <i class="fas fa-list-check"></i>
+    </div>
+    <div class="progress-fraction">
+      <span class="progress-numerator" id="blind75-completed">3</span>
+      <span class="progress-separator">/</span>
+      <span class="progress-denominator">75</span>
+    </div>
+    <div class="progress-label">Blind 75 Problems Completed</div>
+    <div class="progress-bar-container">
+      <div class="progress-bar" style="width: 4%"></div>
+    </div>
+  </div>
+  
+  <div class="progress-item retry-progress">
+    <div class="progress-icon">
+      <i class="fas fa-redo"></i>
+    </div>
+    <div class="progress-value">
+      <span id="retry-count" class="retry-count">1</span>
+    </div>
+    <div class="progress-label">Problems to Retry</div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <div class="tab active" data-tab="all">Problems</div>
+  <div class="tab" data-tab="blind75">Blind 75</div>
+</div>
+
+<!-- All Problems Tab -->
+<div id="all" class="tab-content active">
+  <div class="add-problem-form">
+    <h3>Add New Problem</h3>
+    
+    <div class="add-form-grid">
+      <div class="form-group-enhanced">
+        <label for="problem-title" class="required-field">Problem Title</label>
+        <input type="text" id="problem-title" placeholder="e.g., Two Sum (1)" required>
+      </div>
+      
+      <div class="form-group-enhanced">
+        <label for="problem-url" class="required-field">LeetCode URL</label>
+        <input type="url" id="problem-url" placeholder="https://leetcode.com/problems/..." required>
+      </div>
+      
+      <div class="form-group-enhanced">
+        <label for="problem-topic" class="required-field">Topic(s)</label>
+        <input type="text" id="problem-topic" placeholder="e.g., Array, Hash Table (comma-separated)" required>
+      </div>
+      
+      <div class="form-group-enhanced">
+        <label for="problem-difficulty">Difficulty</label>
+        <select id="problem-difficulty">
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+        </select>
+      </div>
+      
+      <div class="form-group-enhanced full-width hint-container">
+        <label for="problem-hint">Problem Hint</label>
+        <textarea id="problem-hint" placeholder="Enter a helpful hint for solving this problem"></textarea>
+      </div>
+    </div>
+    
+    <button class="add-btn-enhanced" id="add-problem-btn">Add Problem</button>
+  </div>
+    
+  <div class="filter-container">
+    <label for="topic-filter">Filter by Topic:</label>
+    <select id="topic-filter">
+      <option value="all">All Topics</option>
+    </select>
+    
+    <label for="difficulty-filter">Filter by Difficulty:</label>
+    <select id="difficulty-filter">
+      <option value="all">All Difficulties</option>
+      <option value="Easy">Easy</option>
+      <option value="Medium">Medium</option>
+      <option value="Hard">Hard</option>
+    </select>
+    
+    <label>
+      <input type="checkbox" id="retry-filter">
+      Show Retry Only
+    </label>
+  </div>
+  
+  <!-- For all-problems-table -->
+  <table id="all-problems-table">
+    <tr>
+      <th data-sort="0">Problem</th>
+      <th>Topics</th>
+      <th>Difficulty</th>
+      <th data-sort="3">Done?</th>
+      <th>Retry</th>
+      <th>Notes</th>
+      <th>Hint</th>
+      <th>Actions</th>
+    </tr>
+    <!-- Table will be populated by JavaScript -->
+  </table>
+</div>
+
+<!-- Blind 75 Tab -->
+<div id="blind75" class="tab-content">
+  <div class="info-box">
+    <h3>Blind 75 List</h3>
+    <p>This is a fixed collection of 75 essential LeetCode problems. You cannot add new problems to this list.</p>
+  </div>
+  
+  <div class="filter-container">
+    <label for="blind75-topic-filter">Filter by Topic:</label>
+    <select id="blind75-topic-filter">
+      <option value="all">All Topics</option>
+    </select>
+    
+    <label for="blind75-difficulty-filter">Filter by Difficulty:</label>
+    <select id="blind75-difficulty-filter">
+      <option value="all">All Difficulties</option>
+      <option value="Easy">Easy</option>
+      <option value="Medium">Medium</option>
+      <option value="Hard">Hard</option>
+    </select>
+  </div>
+  
+  <!-- For blind75-table -->
+  <table id="blind75-table">
+    <tr>
+      <th data-sort="0">Problem</th>
+      <th>Topics</th>
+      <th>Difficulty</th>
+      <th data-sort="3">Done?</th>
+      <th>Retry</th>
+      <th>Notes</th>
+      <th>Hint</th>
+      <th>Actions</th>
+    </tr>
+    <!-- Table will be populated by JavaScript -->
+  </table>
+</div>
+
+<!-- Notes Modal -->
+<div id="notesModal" class="modal">
+  <div class="notes-modal-content">
+    <div class="modal-header">
+      <h2 id="modal-title">Notes</h2>
+      <span class="close">&times;</span>
+    </div>
+    
+    <div class="notes-tabs">
+      <button class="notes-tab active" data-tab="edit">Edit</button>
+      <button class="notes-tab" data-tab="preview">Preview</button>
+    </div>
+    
+    <!-- Update the Notes Modal structure -->
+    <div class="notes-tab-content active" id="edit-tab">
+      <div class="markdown-tips">
+        <p>Markdown tips: 
+          <code># Header</code>, 
+          <code>**bold**</code>, 
+          <code>*italic*</code>, 
+          <code>[link](url)</code>, 
+          <code>```code```</code>
+        </p>
+      </div>
+      <textarea id="notesContent" placeholder="Enter your notes here... Markdown is supported!"></textarea>
+    </div>
+    <div class="notes-tab-content" id="preview-tab">
+      <div id="markdownPreview" class="markdown-preview"></div>
+    </div>
+        
+    <div class="modal-footer">
+      <button class="btn-cancel">Cancel</button>
+      <button class="save-btn" id="save-notes-btn">
+        <i class="fas fa-save"></i> Save Notes
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Hint Modal -->
+<div id="hintModal" class="modal">
+  <div class="modal-content">
+    <div class="hint-header">
+      <h2 id="hint-modal-title"><i class="fas fa-lightbulb"></i> Hint</h2>
+      <span class="close">&times;</span>
+    </div>
+    <div id="hintContent" class="hint-content"></div>
+    <div class="hint-footer">
+      <button class="close-hint-btn">Got it</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Problem Modal -->
+<div id="editProblemModal" class="modal">
+  <div class="edit-modal-content">
+    <div class="edit-modal-header">
+      <h2>Edit Problem</h2>
+      <span class="close">&times;</span>
+    </div>
+    
+    <div class="add-form-grid">
+      <input type="hidden" id="edit-problem-id">
+      
+      <div class="form-group-enhanced">
+        <label for="edit-problem-title" class="required-field">Problem Title</label>
+        <input type="text" id="edit-problem-title" placeholder="e.g., Two Sum (1)" required>
+      </div>
+      
+      <div class="form-group-enhanced">
+        <label for="edit-problem-url" class="required-field">LeetCode URL</label>
+        <input type="url" id="edit-problem-url" placeholder="https://leetcode.com/problems/..." required>
+      </div>
+      
+      <div class="form-group-enhanced">
+        <label for="edit-problem-topic" class="required-field">Topic(s)</label>
+        <input type="text" id="edit-problem-topic" placeholder="e.g., Array, Hash Table (comma-separated)" required>
+      </div>
+      
+      <div class="form-group-enhanced">
+        <label for="edit-problem-difficulty">Difficulty</label>
+        <select id="edit-problem-difficulty">
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+        </select>
+      </div>
+      
+      <div class="form-group-enhanced full-width hint-container">
+        <label for="edit-problem-hint">Problem Hint</label>
+        <textarea id="edit-problem-hint" placeholder="Enter a helpful hint for solving this problem"></textarea>
+      </div>
+    </div>
+    
+    <div class="edit-modal-footer">
+      <div class="edit-btn-actions">
+        <button class="edit-cancel-btn">Cancel</button>
+        <button class="edit-save-btn"><i class="fas fa-save"></i> Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript files -->
+<script src="js/storage.js"></script>
+<script src="js/problems.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+
+<script>
+  // Debug helper to check loaded problems
+  function checkProblems() {
+
+    
+    const blind75Count = ProblemManager.problems.filter(p => p.isBlind75).length;
+    
+    alert(`Total problems loaded: ${ProblemManager.problems.length}\nBlind75 problems: ${blind75Count}`);
+  }
+  
+</script>
+
+</body>
+</html>
